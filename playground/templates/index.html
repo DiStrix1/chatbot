@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Company Info Query</title>
+</head>
+<body>
+    <h1>Company Information Query</h1>
+    <form method="post" action="{% url 'get_info' %}">
+        {% csrf_token %}
+        <label for="company">Select Company:</label>
+        <select name="company" id="company" required>
+            <option value="Microsoft">Microsoft</option>
+            <option value="Apple">Apple</option>
+            <option value="Tesla">Tesla</option>
+        </select>
+        <br>
+        <label for="year">Select Year:</label>
+        <select name="year" id="year" required>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+        </select>
+        <br>
+        <label for="query_type">Select Query Type:</label>
+        <select name="query_type" id="query_type" required>
+            <option value="revenue">Revenue</option>
+            <option value="net income">Net Income</option>
+            <option value="expenses">Expenses</option>
+            <option value="profit margin">Profit Margin</option>
+            <option value="stock price">Stock Price</option>
+        </select>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if result %}
+        <h2>Result:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>
